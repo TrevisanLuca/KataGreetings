@@ -90,6 +90,22 @@ namespace Greeting.Test
             Assert.AreEqual(expected, actual);
         }
         [Test]
+        public void Should_Handle_Mixed_Names_V2()
+        {
+            var expected = "Hello, Andrea and Franco, Mario. AND HELLO, GIUSEPPE, FEDERICO AND MARCO!";
+            var actual = _sut.Handle("Andrea", "GIUSEPPE", "\"Franco, Mario\"", "FEDERICO, MARCO");
+
+            Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void Should_Handle_Multiple_Uppercase_Names_V2()
+        {
+            var expected = "HELLO, GIUSEPPE, FEDERICO AND MARCO!";
+            var actual = _sut.Handle("GIUSEPPE", "FEDERICO", "MARCO");
+
+            Assert.AreEqual(expected, actual);
+        }
+        [Test]
         public void Should_Handle_Multiple_Empty_Names()
         {
             var expected = "Hello, my friend.";

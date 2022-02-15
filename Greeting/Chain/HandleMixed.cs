@@ -36,12 +36,17 @@ namespace Greeting.Chain
 
             if (upperCaseNames.Count > 0)
             {
-                result = lowerCaseNames.Count < 1 ? "HELLO," : result + " AND HELLO";
+                //temp
+                if (upperCaseNames.Count == 1 && lowerCaseNames.Count == 0)
+                    return $"HELLO, {upperCaseNames[0]}!";
+                //endTemp
+
+                result = lowerCaseNames.Count == 0 ? "HELLO" : result + " AND HELLO";
 
                 if (upperCaseNames.Count > 1)
                 {
                     for (int i = 0; i < upperCaseNames.Count - 1; i++)
-                        result += $" {upperCaseNames[i]}";
+                        result += $", {upperCaseNames[i]}";
 
                     result += $" AND {upperCaseNames.Last()}!";
 
