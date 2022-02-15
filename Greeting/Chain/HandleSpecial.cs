@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Greeting.Chain
 {
@@ -16,7 +14,9 @@ namespace Greeting.Chain
             List<string> tempList = new List<string>();
             foreach (var item in names)
             {
-                if (!item.Contains(","))
+                if (string.IsNullOrWhiteSpace(item))
+                    continue;
+                else if (!item.Contains(","))
                     tempList.Add(item);
                 else if (item.Contains("\""))
                     tempList.Add(item.Trim('"'));

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Greeting.Chain
 {
@@ -11,11 +8,8 @@ namespace Greeting.Chain
         public override string Handle(params string[] names)
         {
             if(names.Any(x=>!x.Any(y=>char.IsLower(y))))
-            {
-                if (_next != null)
-                    return _next.Handle(names);
-                else throw new Exception();
-            }
+                return _next != null ? _next.Handle(names) : throw new Exception();
+
             string result = "Hello";
             for (int i = 0; i < names.Length-1; i++)            
                 result += $", {names[i]}";

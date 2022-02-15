@@ -11,7 +11,12 @@ namespace Greeting.Test
         public void Setup()
         {
             var greeter = new HandleNone();
-            greeter.SetNext(new HandleSpecial()).SetNext(new HandleOne()).SetNext(new HandleTwo()).SetNext(new HandleThreeOrMore()).SetNext(new HandleMixed());
+            greeter.SetNext(new HandleSpecial())
+                .SetNext(new HandleEmpty())
+                //.SetNext(new HandleOne()) //Now unnecessary
+                //.SetNext(new HandleTwo()) //Now unnecessary
+                //.SetNext(new HandleThreeOrMore()) //Now unnecessary
+                .SetNext(new HandleMixed());
             _sut = greeter;
         }
 
@@ -84,6 +89,21 @@ namespace Greeting.Test
 
             Assert.AreEqual(expected, actual);
         }
+        [Test]
+        public void Should_Handle_Multiple_Empty_Names()
+        {
+            var expected = "Hello, my friend.";
+            var actual = _sut.Handle("", ",", "    ");
 
+            Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void Should_Handle_One_Empty_Names()
+        {
+            var expected = "Hello, my friend.";
+            var actual = _sut.Handle("   ");
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

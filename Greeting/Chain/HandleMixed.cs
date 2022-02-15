@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Greeting.Chain
 {
@@ -11,11 +8,8 @@ namespace Greeting.Chain
         public override string Handle(params string[] names)
         {
             //if (condition)
-            //{
-            //    if (_next != null)
-            //        _next.Handle(names);
-            //    throw new Exception();
-            //}
+            //    return _next != null ? _next.Handle(names) : throw new Exception();
+            #region string_subdivision
             List<string> lowerCaseNames = new List<string>();
             List<string> upperCaseNames = new List<string>();
             foreach (var item in names)
@@ -26,27 +20,34 @@ namespace Greeting.Chain
                 else
                     lowerCaseNames.Add(item);
             }
-
-            string result = "Hello";
-
-            if (lowerCaseNames.Count > 1)
+            #endregion
+            string result = string.Empty;
+            if (lowerCaseNames.Count > 0)
             {
-                for (int i = 0; i < lowerCaseNames.Count - 1; i++)
-                    result += $", {lowerCaseNames[i]}";
-                result += $" and {lowerCaseNames.Last()}.";
+                if (lowerCaseNames.Count > 1)
+                {
+                result = "Hello";
+                    for (int i = 0; i < lowerCaseNames.Count - 1; i++)
+                        result += $", {lowerCaseNames[i]}";
+                    result += $" and {lowerCaseNames.Last()}.";
+                }
+                else result = $"Hello, {lowerCaseNames[0]}.";
             }
-            else result += $"Hello, {lowerCaseNames[0]}.";
 
-            if (upperCaseNames.Count > 1)
+            if (upperCaseNames.Count > 0)
             {
-                result += " AND HELLO";
-                for (int i = 0; i < upperCaseNames.Count - 1; i++)
-                    result += $" {upperCaseNames[i]}";
+                result = lowerCaseNames.Count < 1 ? "HELLO," : result + " AND HELLO";
 
-                result += $" AND {upperCaseNames.Last()}!";
+                if (upperCaseNames.Count > 1)
+                {
+                    for (int i = 0; i < upperCaseNames.Count - 1; i++)
+                        result += $" {upperCaseNames[i]}";
 
+                    result += $" AND {upperCaseNames.Last()}!";
+
+                }
+                else result += $" {upperCaseNames[0]}!";
             }
-            else result += $" AND HELLO {upperCaseNames[0]}!";
 
             return result;
         }
