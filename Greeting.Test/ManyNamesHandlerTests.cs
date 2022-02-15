@@ -11,9 +11,8 @@ namespace Greeting.Test
         [SetUp]
         public void Setup()
         {
-            var mock = new Mock<IGreetingHandler>();
-            mock.Setup(x => x.Handle(new string[]{ "Andrea", "Franco", "Giuseppe"})).Returns("Hello, Andrea, Franco and Giuseppe.");
-            _sut = mock.Object;
+            var greeter = new HandleThreeOrMore();
+            _sut = greeter;
         }
 
         [Test]
