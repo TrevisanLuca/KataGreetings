@@ -11,7 +11,8 @@ namespace Greeting.Test
         public void Setup()
         {
             var greeter = new HandleNone();
-            greeter.SetNext(new HandleSpecial())
+            greeter
+                //.SetNext(new HandleSpecial())
                 .SetNext(new HandleEmpty())
                 //.SetNext(new HandleOne()) //Now unnecessary
                 //.SetNext(new HandleTwo()) //Now unnecessary
