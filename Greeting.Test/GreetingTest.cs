@@ -12,7 +12,7 @@ namespace Greeting.Test
         {
             var greeter = new HandleNone();
             greeter
-                //.SetNext(new HandleSpecial())
+                //.SetNext(new HandleSpecial()) //Converted to an Extension
                 .SetNext(new HandleEmpty())
                 //.SetNext(new HandleOne()) //Now unnecessary
                 //.SetNext(new HandleTwo()) //Now unnecessary

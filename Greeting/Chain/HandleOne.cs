@@ -2,6 +2,7 @@
 using System.Linq;
 namespace Greeting.Chain
 {
+    [Obsolete]
     public class HandleOne : AbstractHandler
     {
         public override string Handle(params string[] names)

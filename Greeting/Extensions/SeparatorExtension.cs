@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Greeting.Extensions
@@ -15,11 +14,11 @@ namespace Greeting.Extensions
                 {
                     if (!item.Contains("\""))
                         tempList.AddRange(item.Split(","));
-                    else 
+                    else
                         tempList.Add(item.Trim('"'));
                 }
             }
-                    tempList = tempList.Select(x => x.Trim()).ToList();
+            tempList = tempList.Select(x => x.Trim()).ToList();
             return tempList.ToArray();
         }
     }

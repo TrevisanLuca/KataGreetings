@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Moq;
 using Greeting.Chain;
 
 namespace Greeting.Test

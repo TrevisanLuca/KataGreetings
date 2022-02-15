@@ -1,6 +1,7 @@
 ﻿using System;
 namespace Greeting.Chain
 {
+    [Obsolete]
     public class HandleTwo : AbstractHandler
     {
         public override string Handle(params string[] names)

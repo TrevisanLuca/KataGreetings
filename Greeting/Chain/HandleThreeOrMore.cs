@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Greeting.Chain
 {
+    [Obsolete]
     public class HandleThreeOrMore : AbstractHandler
     {
         public override string Handle(params string[] names)
