@@ -1,5 +1,4 @@
-﻿using System;
-using Greeting.Chain;
+﻿using Greeting.Chain;
 
 namespace Greeting
 {

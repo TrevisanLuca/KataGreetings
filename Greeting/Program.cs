@@ -1,5 +1,4 @@
 ﻿using System;
-using Greeting.Extensions;
 
 namespace Greeting
 {
