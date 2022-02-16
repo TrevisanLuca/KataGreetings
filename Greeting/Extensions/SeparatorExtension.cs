@@ -19,6 +19,7 @@ namespace Greeting.Extensions
                 }
             }
             tempList = tempList.Select(x => x.Trim()).ToList();
+
             return tempList.ToArray();
         }
     }
