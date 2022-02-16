@@ -4,7 +4,7 @@ namespace Greeting
 {
     public class Greeting : IGreeting
     {
-        IGreetingHandler _greetHandler;
+        private IGreetingHandler _greetHandler;
         public Greeting()
         {
             _greetHandler = new HandleNone();

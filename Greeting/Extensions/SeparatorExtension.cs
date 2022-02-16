@@ -7,7 +7,7 @@ namespace Greeting.Extensions
     {
         public static string[] SeparatorHandler(this string[] names)
         {
-            List<string> tempList = new List<string>();
+            var tempList = new List<string>();
             foreach (var item in names)
             {
                 if (!string.IsNullOrWhiteSpace(item))
@@ -18,9 +18,7 @@ namespace Greeting.Extensions
                         tempList.Add(item.Trim('"'));
                 }
             }
-            tempList = tempList.Select(x => x.Trim()).ToList();
-
-            return tempList.ToArray();
+            return tempList.Select(x => x.Trim()).ToArray();            
         }
     }
 }

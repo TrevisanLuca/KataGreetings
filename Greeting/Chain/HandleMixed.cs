@@ -11,24 +11,22 @@ namespace Greeting.Chain
         {
             (lowerCaseNames, upperCaseNames) = StringSubdivision(names);
 
-            string result = string.Empty;
-
             //Due to minute differences between the lowercase and uppercase sentences requirements I had to add some extra code
-            result += ComposeGreeting(LowerOrUpperCase.Lowercase);
+            var result = ComposeGreeting(LowerOrUpperCase.Lowercase);
 
             if (upperCaseNames.Count == 1 && lowerCaseNames.Count == 0)
                 return $"HELLO, {upperCaseNames[0]}!";
             if (lowerCaseNames.Count > 0 && upperCaseNames.Count > 0)
-                result += " AND ";
-            result += ComposeGreeting(LowerOrUpperCase.Uppercase);
+                result = result + " AND ";
+            result = result + ComposeGreeting(LowerOrUpperCase.Uppercase);
 
             return result;
         }
 
-        (List<string> lowerCaseNames, List<string> upperCaseNames) StringSubdivision(string[] names)
+        private (List<string> lowerCaseNames, List<string> upperCaseNames) StringSubdivision(string[] names)
         {
-            List<string>  lowerCaseNames = new List<string>();
-            List<string>  upperCaseNames = new List<string>();
+            var lowerCaseNames = new List<string>();
+            var upperCaseNames = new List<string>();
             foreach (var item in names)
             {
                 if (item.Any(x => char.IsLower(x)))
@@ -39,21 +37,21 @@ namespace Greeting.Chain
             return (lowerCaseNames, upperCaseNames);
         }
 
-        string ComposeGreeting(LowerOrUpperCase lowerOrUpper)
+        private string ComposeGreeting(LowerOrUpperCase lowerOrUpper)
         {
-            string result = string.Empty;
-            List<string> nameList = (lowerOrUpper == LowerOrUpperCase.Lowercase) ? lowerCaseNames : upperCaseNames;
+            var result = string.Empty;
+            var nameList = (lowerOrUpper.Equals(LowerOrUpperCase.Lowercase)) ? lowerCaseNames : upperCaseNames;
             if (nameList.Count > 0)
             {
-                char sentenceEnd = (lowerOrUpper == LowerOrUpperCase.Lowercase) ? '.' : '!';
+                var sentenceEnd = (lowerOrUpper.Equals(LowerOrUpperCase.Lowercase)) ? '.' : '!';
                 if (nameList.Count > 1)
                 {
                     result = "Hello";
                     for (int i = 0; i < nameList.Count - 1; i++)
-                        result += $", {nameList[i]}";
-                    result += $" and {nameList.Last()}{sentenceEnd}";
+                        result = result + $", {nameList[i]}";
+                    result = result + $" and {nameList.Last()}{sentenceEnd}";
                 }
-                else result = (lowerOrUpper == LowerOrUpperCase.Lowercase) ? $"Hello, {nameList[0]}{sentenceEnd}" : $"Hello {nameList[0]}{sentenceEnd}";
+                else result = (lowerOrUpper.Equals(LowerOrUpperCase.Lowercase)) ? $"Hello, {nameList[0]}{sentenceEnd}" : $"Hello {nameList[0]}{sentenceEnd}";
             }
             return (lowerOrUpper == LowerOrUpperCase.Lowercase) ? result : result.ToUpper();
         }
